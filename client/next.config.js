@@ -7,7 +7,9 @@ const nextConfig = {
   },
   images: {
     domains: ["localhost"],
+    unoptimized: true,
   },
+  output: "export",
 };
 
 module.exports = nextConfig;
