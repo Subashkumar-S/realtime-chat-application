@@ -27,6 +27,10 @@ const io = new Server(server, {
   },
 });
 
+app.get("/", (req, res) => {
+  res.json("hello");
+})
+
 global.onlineUsers = new Map();
 io.on("connection", (socket) => {
   global.chatSocket = socket;

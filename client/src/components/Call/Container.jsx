@@ -47,8 +47,8 @@ function Container({ data }) {
           process.env.NEXT_PUBLIC_ZEGO_SERVER_ID
         );
         setZgVar(zg);
-        zg.on("roomStreamUpdate", async (roomID, updateType, streamList, extendedData) => {
-          if (updateType === "ADD") {
+        zg.on("roomStreamUpdate", async (roomId, updateType, streamList, extendedData) => {
+          if (updateType === "ADD" && zg) {
             const rmVideo = document.getElementById("remote-video");
             const vd = document.createElement(
               data.callType === "video" ? "video" : "audio"
@@ -66,7 +66,7 @@ function Container({ data }) {
           } else if (updateType === "DELETE" && zg && localStream && streamList[0].streamID) {
             zg.destroyStream(localStream);
             zg.stopPublishingStream(streamList[0].streamID);
-            zg.logoutRoom(data.roomID.toString());
+            zg.logoutRoom(data.roomId.toString());
             dispatch({ type: reducerCases.END_CALL });
           }
         });
