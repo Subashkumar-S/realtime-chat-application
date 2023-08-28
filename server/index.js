@@ -23,13 +23,13 @@ const server = app.listen(process.env.PORT, () => {
 
 const io = new Server(server, {
   cors: {
-    origin: "http://localhost:3000",
+    origin: "https://whatsapp-clone-35f2d.web.app",
   },
 });
 
 app.get("/", (req, res) => {
   res.json("hello");
-})
+});
 
 global.onlineUsers = new Map();
 io.on("connection", (socket) => {
